@@ -5,12 +5,25 @@ phases:
     runtime-versions:
       nodejs: 16
     commands:
+      - echo Installing source NPM dependencies...
       - npm install
+  pre_build:
+    commands:
+      - echo Clean old dist folder contents...
+      - rm -rf dist/*
   build:
     commands:
+      - echo Build the app...
       - npm run build
-      - zip -r app.zip dist/
-
+  post_build:
+    commands:
+      - echo Copy appspec.yml and start_preview.sh to dist folder...
+      - cp appspec.yml start_preview.sh dist/
+      - echo Create app.zip file...
+      - cd dist/
+      - zip -r ../app.zip *
+      - cd ..
 artifacts:
   files:
     - app.zip
+  base-directory: .
