@@ -17,13 +17,14 @@ phases:
       - npm run build
   post_build:
     commands:
-      - echo Copy appspec.yml and start_preview.sh to dist folder...
-      - cp appspec.yml start_preview.sh dist/
+      - echo Copy start_preview.sh to dist folder...
+      - cp start_preview.sh dist/
       - echo Create app.zip file...
       - cd dist/
       - zip -r ../app.zip *
       - cd ..
 artifacts:
   files:
+    - appspec.yml
     - app.zip
   base-directory: .
