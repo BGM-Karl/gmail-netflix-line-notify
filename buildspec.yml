@@ -18,9 +18,7 @@ phases:
   post_build:
     commands:
       - echo Create app.zip file...
-      - cd dist/
-      - zip -r ../app.zip *
-      - cd ..
+      - zip -r app.zip dist/
 artifacts:
   files:
     - start_preview.sh
